@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface HelloWorldViewController : UIViewController
-
+- (IBAction)digitPressed:(UIButton *)sender;
+- (IBAction)operationPressed:(UIButton *)sender;
+- (IBAction)enterPressed;
+@property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @end
