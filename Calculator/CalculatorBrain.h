@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <math.h>
 
 @interface CalculatorBrain : NSObject
 - (void) pushOperand : (double)operand;

@@ -30,8 +30,8 @@
 
 - (void) pushOperand:(double)operand {
     [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
-    
 }
+
 - (double) performOperation:(NSString *)operation {
     double result = 0;
     if ([operation isEqualToString:@"+"]) {
@@ -48,7 +48,23 @@
     if ([operation isEqualToString:@"*"]) {
         result = [self popOperand] * [self popOperand];
     }
-    
+    if ([operation isEqualToString:@"sin"]) {
+        result = sin([self popOperand]);
+    }
+    if ([operation isEqualToString:@"cos"]) {
+        result = cos([self popOperand]);
+    }
+    if ([operation isEqualToString:@"sqrt"]) {
+        result = sqrt([self popOperand]);
+    }
+    if ([operation isEqualToString:@"π"]) {
+        result = M_PI;
+    }
+    if ([operation isEqualToString:@"C"]) {
+        NSLog(@"Clearing the stack");
+        self.operandStack = [[NSMutableArray alloc] init];
+        result = 0;
+    }
     [self pushOperand:result];
     
     return result;

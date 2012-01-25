@@ -15,6 +15,7 @@
 @end
 
 @implementation HelloWorldViewController
+@synthesize enteredLabel = _enteredLabel;
 
 @synthesize displayLabel = _displayLabel;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
@@ -25,14 +26,36 @@
     return _brain;
 }
 
-
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString *digit = sender.currentTitle;
-    if (self.userIsInTheMiddleOfEnteringANumber) {
-        self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
+    self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@", sender.currentTitle];
+    if ([digit isEqualToString:@"."]) {
+        // This isn't the right behavior! You need to get the userIsInTheMiddleOfEnteringANumber
+        // stuff correct. You are totally ignoring whether the user is in the middle by
+        // keeping the decimal stuff out of the below if/else segments.
+        // Take the below three lines and schnag them out, split them out into the right sections
+        // glhfdd broski. time for bedtime
+        // <3 12/12/11
+        if (self.userIsInTheMiddleOfEnteringANumber) {
+            if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
+                self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
+                self.userIsInTheMiddleOfEnteringANumber = YES;
+            }
+        }
+        else {
+            //if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
+            self.displayLabel.text = [NSString stringWithFormat:@"0%@", digit];
+            self.userIsInTheMiddleOfEnteringANumber = YES;
+            //}
+        }
     } else {
-        self.displayLabel.text = digit;
-        self.userIsInTheMiddleOfEnteringANumber = YES;
+        if (self.userIsInTheMiddleOfEnteringANumber) {
+            
+            self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
+        } else {
+            self.displayLabel.text = digit;
+            self.userIsInTheMiddleOfEnteringANumber = YES;
+        }
     }
 }
 
@@ -41,10 +64,21 @@
     double result = [self.brain performOperation:sender.currentTitle];
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.displayLabel.text  = resultString;
+    if ([sender.currentTitle  isEqualToString:@"C"]) {
+        self.enteredLabel.text = @"";
+    }
+    else {
+        self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
+    }
 }
 
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.displayLabel.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
+}
+- (void)viewDidUnload {
+    [self setEnteredLabel:nil];
+    [super viewDidUnload];
 }
 @end
