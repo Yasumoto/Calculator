@@ -93,11 +93,19 @@
     return result;
 }
 
++ (NSSet *)variablesUsedInProgram:(id)program {
+    return [[NSSet alloc] init];
+}
+
 + (double) runProgram:(id)program {
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
     return [self popOperandOffProgramStack:stack];
+}
+
++ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues {
+    return 2.0;
 }
 @end

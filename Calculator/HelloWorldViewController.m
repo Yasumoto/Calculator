@@ -12,6 +12,7 @@
 @interface HelloWorldViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, strong) NSMutableDictionary *testVariableValues;
 @end
 
 @implementation HelloWorldViewController
@@ -20,6 +21,12 @@
 @synthesize displayLabel = _displayLabel;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
+@synthesize testVariableValues = _testVariableValues;
+
+- (NSMutableDictionary *) testVariableValues {
+    if (!_testVariableValues) _testVariableValues = [[NSMutableDictionary alloc] initWithCapacity:3];
+    return _testVariableValues;
+}
 
 - (CalculatorBrain *)brain {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
@@ -77,6 +84,25 @@
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
 }
+
+- (IBAction)test1Pressed:(UIButton *)sender {
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:1.0] forKey:@"x"];
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:2.0] forKey:@"a"];
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:3.0] forKey:@"b"];
+}
+
+- (IBAction)test2Pressed:(UIButton *)sender {
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:1.0] forKey:@"x"];
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:2.0] forKey:@"a"];
+    [self.testVariableValues setValue:[NSNumber numberWithFloat:3.0] forKey:@"b"];
+}
+
+- (IBAction)testNilPressed:(UIButton *)sender {
+    [self.testVariableValues setValue:nil forKey:@"x"];
+    [self.testVariableValues setValue:nil forKey:@"a"];
+    [self.testVariableValues setValue:nil forKey:@"b"];
+}
+
 - (void)viewDidUnload {
     [self setEnteredLabel:nil];
     [super viewDidUnload];

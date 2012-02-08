@@ -12,6 +12,9 @@
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)operationPressed:(UIButton *)sender;
 - (IBAction)enterPressed;
+- (IBAction)test1Pressed:(UIButton *)sender;
+- (IBAction)test2Pressed:(UIButton *)sender;
+- (IBAction)testNilPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enteredLabel;
 @end
