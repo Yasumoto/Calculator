@@ -12,7 +12,7 @@
 @interface HelloWorldViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
-@property (nonatomic, strong) NSMutableDictionary *testVariableValues;
+@property (nonatomic, strong) NSDictionary *testVariableValues;
 @end
 
 @implementation HelloWorldViewController
@@ -22,11 +22,6 @@
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 @synthesize testVariableValues = _testVariableValues;
-
-- (NSMutableDictionary *) testVariableValues {
-    if (!_testVariableValues) _testVariableValues = [[NSMutableDictionary alloc] initWithCapacity:3];
-    return _testVariableValues;
-}
 
 - (CalculatorBrain *)brain {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
@@ -68,11 +63,13 @@
 
 - (IBAction)operationPressed:(UIButton *)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
-    double result = [self.brain performOperation:sender.currentTitle];
+    [self.brain performOperation:sender.currentTitle];
+    double result = [[self.brain class] runProgram:[self.brain program] usingVariableValues:self.testVariableValues];
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.displayLabel.text  = resultString;
     if ([sender.currentTitle  isEqualToString:@"C"]) {
         self.enteredLabel.text = @"";
+        self.testVariableValues = [[NSDictionary alloc] init];
     }
     else {
         self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
@@ -80,27 +77,29 @@
 }
 
 - (IBAction)enterPressed {
-    [self.brain pushOperand:[self.displayLabel.text doubleValue]];
+    [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
 }
 
 - (IBAction)test1Pressed:(UIButton *)sender {
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:1.0] forKey:@"x"];
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:2.0] forKey:@"a"];
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:3.0] forKey:@"b"];
+    self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:
+     [NSNumber numberWithFloat:1.0], @"x",
+     [NSNumber numberWithFloat:2.0], @"a",
+     [NSNumber numberWithFloat:3.0], @"b", nil];
 }
 
 - (IBAction)test2Pressed:(UIButton *)sender {
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:1.0] forKey:@"x"];
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:2.0] forKey:@"a"];
-    [self.testVariableValues setValue:[NSNumber numberWithFloat:3.0] forKey:@"b"];
+    self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSNumber numberWithFloat:-10.0], @"x",
+                               [NSNumber numberWithFloat:9001.0], @"a", nil];
 }
 
 - (IBAction)testNilPressed:(UIButton *)sender {
-    [self.testVariableValues setValue:nil forKey:@"x"];
-    [self.testVariableValues setValue:nil forKey:@"a"];
-    [self.testVariableValues setValue:nil forKey:@"b"];
+    self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:
+                               nil, @"x",
+                               nil, @"a",
+                               nil, @"b", nil];
 }
 
 - (void)viewDidUnload {

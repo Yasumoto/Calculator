@@ -32,15 +32,15 @@
     return @"Implement this in Homework #2";
 }
 
-- (void)pushOperand:(double)operand
+- (void)pushOperand:(id)operand
 {
-    [self.programStack addObject:[NSNumber numberWithDouble:operand]];
+    if ([operand isMemberOfClass:[NSNumber class]] || [operand isMemberOfClass:[NSString class]])
+        [self.programStack addObject:operand];            
 }
 
-- (double)performOperation:(NSString *)operation
+- (void)performOperation:(NSString *)operation
 {
     [self.programStack addObject:operation];
-    return [[self class] runProgram:self.program];
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
@@ -88,6 +88,9 @@
             NSLog(@"Clearing the stack");
             stack = [[NSMutableArray alloc] init];
             result = 0;
+        }
+        else if ([operation isEqualToString:@"x"]) {
+            NSLog(@"Variable here.");
         }
     }    
     return result;
