@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Joe Smith on 11/25/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 bjoli.com. All rights reserved.
 //
 
 #import "CalculatorBrain.h"
@@ -107,7 +107,7 @@
 
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues {
     double result = 0;
-    if ([program isMemberOfClass:[NSArray class]]) {
+    if ([program isKindOfClass:[NSArray class]]) {
         NSMutableArray *programStack = [(NSArray *)program mutableCopy];
         for (int i = 0; i < [programStack count]; i++) {
             if ([[programStack objectAtIndex:i] isEqual:@"x"]) {
