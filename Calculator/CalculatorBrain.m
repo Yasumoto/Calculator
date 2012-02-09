@@ -89,9 +89,6 @@
             stack = [[NSMutableArray alloc] init];
             result = 0;
         }
-        else if ([operation isEqualToString:@"x"]) {
-            NSLog(@"Variable here.");
-        }
     }    
     return result;
 }
@@ -109,6 +106,25 @@
 }
 
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues {
-    return 2.0;
+    double result = 0;
+    if ([program isMemberOfClass:[NSArray class]]) {
+        NSMutableArray *programStack = [(NSArray *)program mutableCopy];
+        for (int i = 0; i < [programStack count]; i++) {
+            if ([[programStack objectAtIndex:i] isEqual:@"x"]) {
+                [programStack replaceObjectAtIndex:i withObject:
+                 [variableValues objectForKey:@"x"]];
+            }
+            if ([[programStack objectAtIndex:i] isEqual:@"a"]) {
+                [programStack replaceObjectAtIndex:i withObject:
+                 [variableValues objectForKey:@"a"]];
+            }
+            if ([[programStack objectAtIndex:i] isEqual:@"b"]) {
+                [programStack replaceObjectAtIndex:i withObject:
+                 [variableValues objectForKey:@"b"]];
+            }
+        }
+        result = [self runProgram:programStack];
+    }
+    return result;
 }
 @end
