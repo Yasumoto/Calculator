@@ -10,7 +10,7 @@
 #import <math.h>
 
 @interface CalculatorBrain : NSObject
-- (void) pushOperand : idoperand;
+- (void) pushOperand : (id) operand;
 - (void) performOperation : (NSString *)operation;
 
 @property (nonatomic, readonly) id program;

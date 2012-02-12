@@ -8,11 +8,13 @@
 
 #import "HelloWorldViewController.h"
 #import "CalculatorBrain.h"
+#import <Foundation/NSException.h>
 
 @interface HelloWorldViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *testVariableValues;
+- (void) updateVariableDisplay;
 @end
 
 @implementation HelloWorldViewController
@@ -22,6 +24,7 @@
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 @synthesize testVariableValues = _testVariableValues;
+@synthesize variablesLabel = _variablesLabel;
 
 - (CalculatorBrain *)brain {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
@@ -32,12 +35,6 @@
     NSString *digit = sender.currentTitle;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@", sender.currentTitle];
     if ([digit isEqualToString:@"."]) {
-        // This isn't the right behavior! You need to get the userIsInTheMiddleOfEnteringANumber
-        // stuff correct. You are totally ignoring whether the user is in the middle by
-        // keeping the decimal stuff out of the below if/else segments.
-        // Take the below three lines and schnag them out, split them out into the right sections
-        // glhfdd broski. time for bedtime
-        // <3 12/12/11
         if (self.userIsInTheMiddleOfEnteringANumber) {
             if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
                 self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
@@ -45,19 +42,30 @@
             }
         }
         else {
-            //if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
             self.displayLabel.text = [NSString stringWithFormat:@"0%@", digit];
             self.userIsInTheMiddleOfEnteringANumber = YES;
-            //}
         }
     } else {
         if (self.userIsInTheMiddleOfEnteringANumber) {
-            
             self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
         } else {
             self.displayLabel.text = digit;
             self.userIsInTheMiddleOfEnteringANumber = YES;
         }
+    }
+}
+
+- (void) updateVariableDisplay {
+    self.variablesLabel.text = @"";
+    NSSet *variablesSet = [CalculatorBrain variablesUsedInProgram:self.brain.program];
+    NSString *variableValue;
+    for (id variable in variablesSet) {
+        variableValue = [self.testVariableValues valueForKey:variable];
+        if (!variableValue) {
+            variableValue = @"0";
+        }
+        self.variablesLabel.text = [self.variablesLabel.text stringByAppendingFormat:@"%@ = %@  ", variable, variableValue];
+        
     }
 }
 
@@ -69,30 +77,40 @@
     self.displayLabel.text  = resultString;
     if ([sender.currentTitle  isEqualToString:@"C"]) {
         self.enteredLabel.text = @"";
-        self.testVariableValues = [[NSDictionary alloc] init];
+        self.brain = nil;
     }
     else {
         self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
     }
+    [self updateVariableDisplay];
 }
 
+
 - (IBAction)enterPressed {
-    [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
+    if ([self.displayLabel.text isEqualToString:@"x"] || [self.displayLabel.text isEqualToString:@"a"] || [self.displayLabel.text isEqualToString:@"b"]) {
+        [self.brain pushOperand:self.displayLabel.text];
+    }
+    else {
+        [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
+    }
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
+    [self updateVariableDisplay];
 }
 
 - (IBAction)test1Pressed:(UIButton *)sender {
     self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:
-     [NSNumber numberWithFloat:1.0], @"x",
-     [NSNumber numberWithFloat:2.0], @"a",
-     [NSNumber numberWithFloat:3.0], @"b", nil];
+                               [NSNumber numberWithFloat:1.0], @"x",
+                               [NSNumber numberWithFloat:2.0], @"a",
+                               [NSNumber numberWithFloat:3.0], @"b", nil];
+    [self updateVariableDisplay];
 }
 
 - (IBAction)test2Pressed:(UIButton *)sender {
     self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithFloat:-10.0], @"x",
                                [NSNumber numberWithFloat:9001.0], @"a", nil];
+    [self updateVariableDisplay];
 }
 
 - (IBAction)testNilPressed:(UIButton *)sender {
@@ -100,6 +118,7 @@
                                nil, @"x",
                                nil, @"a",
                                nil, @"b", nil];
+    [self updateVariableDisplay];
 }
 
 - (void)viewDidUnload {
