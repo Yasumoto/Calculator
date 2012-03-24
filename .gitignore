@@ -1,6 +1,2 @@
-
 .DS_Store
-
-Calculator.xcodeproj/xcuserdata/josephsmith.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-
-Calculator.xcodeproj/project.xcworkspace/xcuserdata/josephsmith.xcuserdatad/UserInterfaceState.xcuserstate
+Calculator.xcodeproj*
