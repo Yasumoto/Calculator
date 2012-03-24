@@ -11,6 +11,7 @@
 @interface CalculatorBrain ()
 @property (nonatomic, strong) NSMutableArray *programStack;
 + (BOOL)isOperation:(NSString *)operation;
++ (BOOL)isVariable:(NSString *)variable;
 @end
 
 @implementation CalculatorBrain
@@ -31,6 +32,11 @@
 + (BOOL)isOperation:(NSString *)operation {
     NSArray *operationsSet = [[NSArray alloc] initWithObjects:@"+", @"-", @"/", @"*", @"sin", @"cos", @"sqrt", @"π", @"C", nil];
     return [operationsSet containsObject:operation];
+}
+
++ (BOOL)isVariable:(NSString *)variable {
+    NSArray *variableSet = [[NSArray alloc] initWithObjects:@"a", @"b", @"x", nil];
+    return [variableSet containsObject:variable];
 }
 
 + (NSString *)descriptionOfProgram:(id)program
@@ -135,22 +141,8 @@
         NSMutableArray *programStack = [(NSArray *)program mutableCopy];
         for (int i = 0; i < [programStack count]; i++) {
             NSString *value = @"";
-            if ([[programStack objectAtIndex:i] isEqual:@"x"]) {
-                value = [variableValues objectForKey:@"x"];
-                if (!value) {
-                    value = @"0";
-                }
-                [programStack replaceObjectAtIndex:i withObject:value];
-            }
-            if ([[programStack objectAtIndex:i] isEqual:@"a"]) {
-                value = [variableValues objectForKey:@"a"];
-                if (!value) {
-                    value = @"0";
-                }
-                [programStack replaceObjectAtIndex:i withObject:value];
-            }
-            if ([[programStack objectAtIndex:i] isEqual:@"b"]) {
-                value = [variableValues objectForKey:@"b"];
+            if ([self isVariable:[programStack objectAtIndex:i]]) {
+                value = [variableValues objectForKey:[programStack objectAtIndex:i]];
                 if (!value) {
                     value = @"0";
                 }
