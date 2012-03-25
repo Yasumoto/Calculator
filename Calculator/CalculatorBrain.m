@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSMutableArray *programStack;
 + (BOOL)isOperation:(NSString *)operation;
 + (BOOL)isVariable:(NSString *)variable;
++ (NSString *)describeStack:(NSMutableArray *)stack;
 @end
 
 @implementation CalculatorBrain
@@ -39,9 +40,35 @@
     return [variableSet containsObject:variable];
 }
 
++(BOOL)isUnaryOperation:(NSString *)operation {
+    NSArray *unaryOperationsSet = [[NSArray alloc] initWithObjects:@"sin", @"cos", @"sqrt", nil];
+    return [unaryOperationsSet containsObject:operation];
+}
+
++ (NSString *)describeStack:(NSMutableArray *)stack {
+    id topOfStack = [stack lastObject];
+    if (topOfStack) {
+        [stack removeLastObject];
+    }
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        return [NSString stringWithFormat:@"%f", [topOfStack floatValue]];
+    }
+    else if ([self isUnaryOperation:topOfStack]){
+        return [topOfStack stringByAppendingString:[self describeStack:stack]];
+    }
+    //else if ([self isBinaryOperation:topOfStack] {
+    //    return [@"(" st [self describeStack:stack]
+    //}
+    return nil;
+}
+
 + (NSString *)descriptionOfProgram:(id)program
 {
-    return @"Implement this in Homework #2";
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    return [self describeStack:stack];    
 }
 
 - (void)pushOperand:(id)operand

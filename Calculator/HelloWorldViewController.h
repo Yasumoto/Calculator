@@ -18,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enteredLabel;
 @property (weak, nonatomic) IBOutlet UILabel *variablesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infixLabel;
 @end

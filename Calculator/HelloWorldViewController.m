@@ -19,6 +19,7 @@
 
 @implementation HelloWorldViewController
 @synthesize enteredLabel = _enteredLabel;
+@synthesize infixLabel = _infixLabel;
 
 @synthesize displayLabel = _displayLabel;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
@@ -83,6 +84,7 @@
         self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
     }
     [self updateVariableDisplay];
+    self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
 }
 
 
@@ -96,6 +98,7 @@
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
     [self updateVariableDisplay];
+    self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
 }
 
 - (IBAction)test1Pressed:(UIButton *)sender {
