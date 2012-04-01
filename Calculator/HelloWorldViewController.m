@@ -80,6 +80,7 @@
     if ([sender.currentTitle  isEqualToString:@"C"]) {
         self.enteredLabel.text = @"";
         self.brain = nil;
+        self.infixLabel.text = @"";
     }
     else {
         self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
@@ -98,7 +99,7 @@
         if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
             [self.brain pushOperand:[NSNumber numberWithInt:[self.displayLabel.text intValue]]];
         } else {
-        [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
+            [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
         }
     }
     self.userIsInTheMiddleOfEnteringANumber = NO;
@@ -135,9 +136,12 @@
         NSString *newNum = [self.displayLabel.text substringToIndex:[self.displayLabel.text length]-1];
         self.displayLabel.text = newNum;
         self.enteredLabel.text = newNum;
+        if(self.displayLabel.text.length <= 0) {
+            self.userIsInTheMiddleOfEnteringANumber = false;
+        }
     }
     else {
-        // To undo last operation/entered number.
+        //Remove last calculated item
     }
 }
 
