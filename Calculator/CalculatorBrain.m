@@ -31,18 +31,26 @@
 }
 
 + (BOOL)isOperation:(NSString *)operation {
-    NSArray *operationsSet = [[NSArray alloc] initWithObjects:@"+", @"-", @"/", @"*", @"sin", @"cos", @"sqrt", @"π", @"C", nil];
+    if ([self isUnaryOperation:operation] || [self isBinaryOperation:operation]) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
++ (BOOL)isBinaryOperation:(NSString *)operation {
+    NSArray *operationsSet = [[NSArray alloc] initWithObjects:@"+", @"-", @"/", @"*", nil];
     return [operationsSet containsObject:operation];
 }
 
-+ (BOOL)isVariable:(NSString *)variable {
-    NSArray *variableSet = [[NSArray alloc] initWithObjects:@"a", @"b", @"x", nil];
-    return [variableSet containsObject:variable];
++(BOOL)isUnaryOperation:(NSString *)operation {
+    //Removed π and made it a "variable"
+    NSArray *unaryOperationsSet = [[NSArray alloc] initWithObjects:@"sin", @"cos", @"sqrt", @"C", nil];
+    return [unaryOperationsSet containsObject:operation];
 }
 
-+(BOOL)isUnaryOperation:(NSString *)operation {
-    NSArray *unaryOperationsSet = [[NSArray alloc] initWithObjects:@"sin", @"cos", @"sqrt", nil];
-    return [unaryOperationsSet containsObject:operation];
++ (BOOL)isVariable:(NSString *)variable {
+    NSArray *variableSet = [[NSArray alloc] initWithObjects:@"a", @"b", @"x", @"π", nil];
+    return [variableSet containsObject:variable];
 }
 
 + (NSString *)describeStack:(NSMutableArray *)stack {
@@ -51,14 +59,25 @@
         [stack removeLastObject];
     }
     if ([topOfStack isKindOfClass:[NSNumber class]]) {
-        return [NSString stringWithFormat:@"%f", [topOfStack floatValue]];
+        NSNumber *num = topOfStack;
+        if ([num intValue] != 0) {
+            return [NSString stringWithFormat:@"%d", [num intValue]];
+        }
+        else {
+            return [NSString stringWithFormat:@"%f", [num floatValue]];
+        }
     }
     else if ([self isUnaryOperation:topOfStack]){
-        return [topOfStack stringByAppendingString:[self describeStack:stack]];
+        return [NSString stringWithFormat:@"%@(%@)", topOfStack, [self describeStack:stack]];
     }
-    //else if ([self isBinaryOperation:topOfStack] {
-    //    return [@"(" st [self describeStack:stack]
-    //}
+    else if ([self isBinaryOperation:topOfStack]) {
+        NSString *previousEntry = [self describeStack:stack];
+        return [NSString stringWithFormat:@"(%@ %@ %@)", [self describeStack:stack], topOfStack, previousEntry];
+    }
+    else {
+        NSString *varOrPi = topOfStack;
+        return varOrPi;
+    }
     return nil;
 }
 
@@ -138,6 +157,7 @@
 + (NSSet *)variablesUsedInProgram:(id)program {
     NSMutableSet *variablesInProgram = [[NSMutableSet alloc] init];
     // your shit (aka stack) isn't getting cleared. hitting C doesn't blow away the program stack.
+    // TODO(josephsmith): 03/30/12 uhhhh what? is this fixed?
     if ([program isKindOfClass:[NSArray class]]) {
         NSArray *stack = [program copy];
         for (id item in stack) {

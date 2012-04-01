@@ -42,6 +42,7 @@
                 self.userIsInTheMiddleOfEnteringANumber = YES;
             }
         }
+        // This is the beginning of a new number, so we'll want to append a 0
         else {
             self.displayLabel.text = [NSString stringWithFormat:@"0%@", digit];
             self.userIsInTheMiddleOfEnteringANumber = YES;
@@ -89,11 +90,17 @@
 
 
 - (IBAction)enterPressed {
-    if ([self.displayLabel.text isEqualToString:@"x"] || [self.displayLabel.text isEqualToString:@"a"] || [self.displayLabel.text isEqualToString:@"b"]) {
+    if ([self.displayLabel.text isEqualToString:@"x"] || [self.displayLabel.text isEqualToString:@"a"] || [self.displayLabel.text isEqualToString:@"b"]
+        || [self.displayLabel.text isEqualToString:@"π"]) {
         [self.brain pushOperand:self.displayLabel.text];
     }
     else {
+        // If is not a float value
+        if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
+            [self.brain pushOperand:[NSNumber numberWithInt:[self.displayLabel.text intValue]]];
+        } else {
         [self.brain pushOperand:[NSNumber numberWithDouble:[self.displayLabel.text doubleValue]]];
+        }
     }
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
