@@ -31,7 +31,8 @@
 }
 
 + (BOOL)isOperation:(NSString *)operation {
-    if ([self isUnaryOperation:operation] || [self isBinaryOperation:operation]) {
+    if ([self isUnaryOperation:operation] || [self isBinaryOperation:operation]
+        || [self isNonOperation:operation]) {
         return TRUE;
     }
     return FALSE;
@@ -43,13 +44,17 @@
 }
 
 +(BOOL)isUnaryOperation:(NSString *)operation {
-    //Removed π and made it a "variable"
-    NSArray *unaryOperationsSet = [[NSArray alloc] initWithObjects:@"sin", @"cos", @"sqrt", @"C", nil];
+    NSArray *unaryOperationsSet = [[NSArray alloc] initWithObjects:@"sin", @"cos", @"sqrt", nil];
     return [unaryOperationsSet containsObject:operation];
 }
 
++(BOOL)isNonOperation:(NSString *)operation {
+    NSArray *nonOperationSet = [[NSArray alloc] initWithObjects:@"π", @"C", nil];
+    return [nonOperationSet containsObject:operation];
+}
+
 + (BOOL)isVariable:(NSString *)variable {
-    NSArray *variableSet = [[NSArray alloc] initWithObjects:@"a", @"b", @"x", @"π", nil];
+    NSArray *variableSet = [[NSArray alloc] initWithObjects:@"a", @"b", @"x", nil];
     return [variableSet containsObject:variable];
 }
 
@@ -59,13 +64,7 @@
         [stack removeLastObject];
     }
     if ([topOfStack isKindOfClass:[NSNumber class]]) {
-        NSNumber *num = topOfStack;
-        if ([num intValue] != 0) {
-            return [NSString stringWithFormat:@"%d", [num intValue]];
-        }
-        else {
-            return [NSString stringWithFormat:@"%f", [num floatValue]];
-        }
+        return [topOfStack stringValue];
     }
     else if ([self isUnaryOperation:topOfStack]){
         return [NSString stringWithFormat:@"%@(%@)", topOfStack, [self describeStack:stack]];
@@ -156,8 +155,6 @@
 
 + (NSSet *)variablesUsedInProgram:(id)program {
     NSMutableSet *variablesInProgram = [[NSMutableSet alloc] init];
-    // your shit (aka stack) isn't getting cleared. hitting C doesn't blow away the program stack.
-    // TODO(josephsmith): 03/30/12 uhhhh what? is this fixed?
     if ([program isKindOfClass:[NSArray class]]) {
         NSArray *stack = [program copy];
         for (id item in stack) {
