@@ -74,9 +74,9 @@
 - (IBAction)operationPressed:(UIButton *)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
     [self.brain performOperation:sender.currentTitle];
+    self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
     double result = [[self.brain class] runProgram:[self.brain program] usingVariableValues:self.testVariableValues];
-    NSString *resultString = [NSString stringWithFormat:@"%g", result];
-    self.displayLabel.text  = resultString;
+    self.displayLabel.text = [NSString stringWithFormat:@"%g", result];
     if ([sender.currentTitle  isEqualToString:@"C"]) {
         self.enteredLabel.text = @"";
         self.brain = nil;
@@ -85,7 +85,6 @@
         self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", sender.currentTitle];
     }
     [self updateVariableDisplay];
-    self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
 }
 
 
@@ -129,6 +128,17 @@
                                nil, @"a",
                                nil, @"b", nil];
     [self updateVariableDisplay];
+}
+
+- (IBAction)undoPressed:(UIButton *)sender {
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        NSString *newNum = [self.displayLabel.text substringToIndex:[self.displayLabel.text length]-1];
+        self.displayLabel.text = newNum;
+        self.enteredLabel.text = newNum;
+    }
+    else {
+        // To undo last operation/entered number.
+    }
 }
 
 - (void)viewDidUnload {

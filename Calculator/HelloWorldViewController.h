@@ -15,6 +15,7 @@
 - (IBAction)test1Pressed:(UIButton *)sender;
 - (IBAction)test2Pressed:(UIButton *)sender;
 - (IBAction)testNilPressed:(UIButton *)sender;
+- (IBAction)undoPressed:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enteredLabel;
 @property (weak, nonatomic) IBOutlet UILabel *variablesLabel;
