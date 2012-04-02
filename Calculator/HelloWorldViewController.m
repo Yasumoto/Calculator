@@ -142,6 +142,8 @@
     }
     else {
         [self.brain undoAction];
+        self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
+        //self.displayLabel.text = [self.displayLabel.text 
     }
 }
 
