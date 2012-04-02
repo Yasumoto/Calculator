@@ -141,7 +141,7 @@
         }
     }
     else {
-        //Remove last calculated item
+        [self.brain undoAction];
     }
 }
 

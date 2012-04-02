@@ -74,8 +74,7 @@
         return [NSString stringWithFormat:@"(%@ %@ %@)", [self describeStack:stack], topOfStack, previousEntry];
     }
     else {
-        NSString *varOrPi = topOfStack;
-        return varOrPi;
+        return topOfStack;
     }
     return nil;
 }
@@ -196,5 +195,9 @@
         result = [self runProgram:programStack];
     }
     return result;
+}
+
+- (void) undoAction {
+    return [self.programStack removeLastObject];
 }
 @end
