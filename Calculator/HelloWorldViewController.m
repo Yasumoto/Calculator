@@ -143,6 +143,8 @@
     else {
         [self.brain undoAction];
         self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
+        double result = [[self.brain class] runProgram:[self.brain program] usingVariableValues:self.testVariableValues];
+        self.displayLabel.text = [NSString stringWithFormat:@"%g", result]; [[self.brain class] runProgram:self.brain.program usingVariableValues:self.testVariableValues];
         //self.displayLabel.text = [self.displayLabel.text 
     }
 }

@@ -85,7 +85,14 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self describeStack:stack];    
+    NSString *stackDescription = @"";
+    while ([stack count] > 0) {
+        stackDescription = [stackDescription stringByAppendingString:[self describeStack:stack]];
+        if ([stack count] > 0) {
+            stackDescription = [stackDescription stringByAppendingString:@", "];
+        }
+    }
+    return stackDescription;
 }
 
 - (void)pushOperand:(id)operand
