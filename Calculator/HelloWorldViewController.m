@@ -76,7 +76,7 @@
         self.enteredLabel.text = @"";
         self.brain = nil;
         self.infixLabel.text = @"";
-        self.displayLabel.text = @"";
+        self.displayLabel.text = @"0";
     }
     else {
         if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
@@ -104,7 +104,7 @@
         }
     }
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@" "];
+    self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@ ", self.displayLabel.text];
     [self updateVariableDisplay];
     self.infixLabel.text = [[self.brain class] descriptionOfProgram:self.brain.program];
 }
@@ -134,6 +134,7 @@
 
 - (NSString *) popStringStack:(NSString *)stack {
     NSMutableArray *tokens = [[stack componentsSeparatedByString:@" "] mutableCopy];
+    [tokens removeObject:@""];
     [tokens removeLastObject];
     return [tokens componentsJoinedByString:@" "];
 }
