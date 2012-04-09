@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 bjoli.com. All rights reserved.
 //
 
-#import "HelloWorldViewController.h"
+#import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
 
-@interface HelloWorldViewController()
+@interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *testVariableValues;
 @end
 
-@implementation HelloWorldViewController
+@implementation CalculatorViewController
 @synthesize enteredLabel = _enteredLabel;
 @synthesize infixLabel = _infixLabel;
 
@@ -77,6 +77,11 @@
     }
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Graphing"]) {
+        //[segue.destinationViewController setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
+    }
+}
 
 - (IBAction)enterPressed {
     if ([self.displayLabel.text isEqualToString:@"x"] || [self.displayLabel.text isEqualToString:@"π"]) {

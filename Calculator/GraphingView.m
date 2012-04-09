@@ -29,6 +29,7 @@
 
 - (void) setup
 {
+    self.contentMode = UIViewContentModeRedraw;
 }
 
 - (void) awakeFromNib
@@ -44,7 +45,6 @@
     }
     return self;
 }
-
 
 - (void)drawRect:(CGRect)rect
 {
