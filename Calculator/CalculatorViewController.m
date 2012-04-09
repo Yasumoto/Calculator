@@ -116,7 +116,10 @@
 
 - (CGFloat) PointYToPlotForXValue:(float)x forGraphingView:(GraphingView *)sender {
     [self.testVariableValues setValue:[NSNumber numberWithFloat:x] forKey:@"x"];
-    return [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.testVariableValues];
+    NSLog(@"X: %f, Y: %f", x, result);
+    NSNumber *yValue = [NSNumber numberWithFloat:result];
+    return [yValue floatValue];
 }
 
 - (IBAction)undoPressed:(UIButton *)sender {

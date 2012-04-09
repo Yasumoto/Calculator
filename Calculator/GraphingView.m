@@ -18,7 +18,7 @@
 @synthesize scale = _scale;
 @synthesize dataSource = _dataSource;
 
-#define DEFAULT_SCALE 20
+#define DEFAULT_SCALE 200
 
 - (CGFloat) scale {
     if (!_scale) {
@@ -59,7 +59,7 @@
     CGContextBeginPath(context);
     CGFloat startX = self.bounds.origin.x;
     CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
-    for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.size.width; x += 1.0) {
+    for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
         CGFloat y = [self.dataSource PointYToPlotForXValue:x forGraphingView:self];
         CGContextAddLineToPoint(context, x, y);
     }
