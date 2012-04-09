@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class GraphingView;
+
+@protocol GraphingViewDataSource
+- (float) PointYToPlotForXValue:(float) x forGraphingView:(GraphingView *)sender;
+@end
+
 @interface GraphingView : UIView
 
 @end
