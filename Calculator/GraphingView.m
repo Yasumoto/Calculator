@@ -52,6 +52,8 @@
     center.x = self.bounds.origin.x + self.bounds.size.width / 2;
     center.y = self.bounds.origin.y + self.bounds.size.height / 2;
     [AxesDrawer drawAxesInRect:self.bounds originAtPoint:center scale:self.scale];
+    
+    
 }
 
 @end

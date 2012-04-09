@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphingView.h"
 
-@interface CalculatorViewController : UIViewController
+@interface CalculatorViewController : UIViewController <GraphingViewDataSource>
 - (IBAction)digitPressed:(UIButton *)sender;
 - (IBAction)operationPressed:(UIButton *)sender;
 - (IBAction)enterPressed;
