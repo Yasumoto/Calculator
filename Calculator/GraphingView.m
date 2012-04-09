@@ -61,7 +61,7 @@
     CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
     for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
         CGFloat y = [self.dataSource PointYToPlotForXValue:x forGraphingView:self];
-        CGContextAddLineToPoint(context, x, y);
+        CGContextAddLineToPoint(context, x, center.y + self.scale * y);
     }
     CGContextStrokePath(context);
 }
