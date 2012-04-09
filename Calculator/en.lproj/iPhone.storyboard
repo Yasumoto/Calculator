@@ -424,7 +424,7 @@
             </objects>
             <point key="canvasLocation" x="-233" y="223"/>
         </scene>
-        <!--Graphing View Controller - Graph-->
+        <!--Graphing View Controller-->
         <scene sceneID="xiZ-9C-nVh">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cs-1u-F1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -434,7 +434,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Graph" id="cSX-RS-eag"/>
+                    <navigationItem key="navigationItem" id="cSX-RS-eag"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="136" y="223"/>

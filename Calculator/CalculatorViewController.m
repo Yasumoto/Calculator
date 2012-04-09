@@ -79,7 +79,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Graphing"]) {
-        //[segue.destinationViewController setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
+        [segue.destinationViewController setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
     }
 }
 
