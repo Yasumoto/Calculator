@@ -38,7 +38,6 @@
 
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString *digit = sender.currentTitle;
-    self.enteredLabel.text = [self.enteredLabel.text stringByAppendingFormat:@"%@", sender.currentTitle];
     if ([digit isEqualToString:@"."]) {
         if (self.userIsInTheMiddleOfEnteringANumber) {
             if ([self.displayLabel.text rangeOfString:@"."].location == NSNotFound) {
