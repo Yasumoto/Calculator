@@ -429,7 +429,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cs-1u-F1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="BfT-1h-hUx" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ihp-bu-Ag5">
+                    <view key="view" contentMode="scaleToFill" id="ihp-bu-Ag5" customClass="GraphingView">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

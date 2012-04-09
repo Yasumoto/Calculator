@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE576B0715325EA200050AC7 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE576B0615325EA200050AC7 /* iPad.storyboard */; };
 		EE576B0A153264A300050AC7 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = EE576B09153264A300050AC7 /* AxesDrawer.m */; };
+		EE576B0D153265B500050AC7 /* GraphingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE576B0C153265B500050AC7 /* GraphingView.m */; };
 		EEA3814E14806046009948E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3814D14806046009948E5 /* UIKit.framework */; };
 		EEA3815014806046009948E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3814F14806046009948E5 /* Foundation.framework */; };
 		EEA3815214806046009948E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3815114806046009948E5 /* CoreGraphics.framework */; };
@@ -39,6 +40,8 @@
 		EE576B0615325EA200050AC7 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		EE576B08153264A300050AC7 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		EE576B09153264A300050AC7 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
+		EE576B0B153265B500050AC7 /* GraphingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingView.h; sourceTree = "<group>"; };
+		EE576B0C153265B500050AC7 /* GraphingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingView.m; sourceTree = "<group>"; };
 		EEA3814914806046009948E5 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA3814D14806046009948E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EEA3814F14806046009948E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,8 @@
 				EEA3815C14806046009948E5 /* HelloWorldAppDelegate.h */,
 				EEA3815D14806046009948E5 /* HelloWorldAppDelegate.m */,
 				EEA3815F14806046009948E5 /* iPhone.storyboard */,
+				EE576B0B153265B500050AC7 /* GraphingView.h */,
+				EE576B0C153265B500050AC7 /* GraphingView.m */,
 				EE576B0615325EA200050AC7 /* iPad.storyboard */,
 				EEA3816214806046009948E5 /* HelloWorldViewController.h */,
 				EEA3816314806046009948E5 /* HelloWorldViewController.m */,
@@ -276,6 +281,7 @@
 				EEA3816414806046009948E5 /* HelloWorldViewController.m in Sources */,
 				EEA3818414806392009948E5 /* CalculatorBrain.m in Sources */,
 				EE576B0A153264A300050AC7 /* AxesDrawer.m in Sources */,
+				EE576B0D153265B500050AC7 /* GraphingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
