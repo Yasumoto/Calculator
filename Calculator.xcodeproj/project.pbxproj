@@ -127,12 +127,12 @@
 			children = (
 				EEA3815C14806046009948E5 /* HelloWorldAppDelegate.h */,
 				EEA3815D14806046009948E5 /* HelloWorldAppDelegate.m */,
+				EE576B0615325EA200050AC7 /* iPad.storyboard */,
 				EEA3815F14806046009948E5 /* iPhone.storyboard */,
 				EE576B12153270F300050AC7 /* GraphingViewController.h */,
 				EE576B13153270F300050AC7 /* GraphingViewController.m */,
 				EE576B0B153265B500050AC7 /* GraphingView.h */,
 				EE576B0C153265B500050AC7 /* GraphingView.m */,
-				EE576B0615325EA200050AC7 /* iPad.storyboard */,
 				EEA3816214806046009948E5 /* CalculatorViewController.h */,
 				EEA3816314806046009948E5 /* CalculatorViewController.m */,
 				EEA3818214806392009948E5 /* CalculatorBrain.h */,

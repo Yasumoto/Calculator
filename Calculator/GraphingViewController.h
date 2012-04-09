@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphingView.h"
 
 @interface GraphingViewController : UIViewController
-
+@property (nonatomic, weak) IBOutlet GraphingView *graphingView;
 @end

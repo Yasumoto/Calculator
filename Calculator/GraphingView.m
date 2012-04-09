@@ -18,7 +18,7 @@
 @synthesize scale = _scale;
 @synthesize dataSource = _dataSource;
 
-#define DEFAULT_SCALE 0.90
+#define DEFAULT_SCALE 20
 
 - (CGFloat) scale {
     if (!_scale) {
@@ -48,12 +48,22 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     CGPoint center;
     center.x = self.bounds.origin.x + self.bounds.size.width / 2;
     center.y = self.bounds.origin.y + self.bounds.size.height / 2;
     [AxesDrawer drawAxesInRect:self.bounds originAtPoint:center scale:self.scale];
-    
-    
+
+    [[UIColor redColor] setStroke];
+    CGContextBeginPath(context);
+    CGFloat startX = self.bounds.origin.x;
+    CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
+    for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.size.width; x += 1.0) {
+        CGFloat y = [self.dataSource PointYToPlotForXValue:x forGraphingView:self];
+        CGContextAddLineToPoint(context, x, y);
+    }
+    CGContextStrokePath(context);
 }
 
 @end
