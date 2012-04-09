@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE576B0715325EA200050AC7 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE576B0615325EA200050AC7 /* iPad.storyboard */; };
 		EEA3814E14806046009948E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3814D14806046009948E5 /* UIKit.framework */; };
 		EEA3815014806046009948E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3814F14806046009948E5 /* Foundation.framework */; };
 		EEA3815214806046009948E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3815114806046009948E5 /* CoreGraphics.framework */; };
 		EEA3815814806046009948E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EEA3815614806046009948E5 /* InfoPlist.strings */; };
 		EEA3815A14806046009948E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3815914806046009948E5 /* main.m */; };
 		EEA3815E14806046009948E5 /* HelloWorldAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3815D14806046009948E5 /* HelloWorldAppDelegate.m */; };
-		EEA3816114806046009948E5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEA3815F14806046009948E5 /* MainStoryboard.storyboard */; };
+		EEA3816114806046009948E5 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEA3815F14806046009948E5 /* iPhone.storyboard */; };
 		EEA3816414806046009948E5 /* HelloWorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3816314806046009948E5 /* HelloWorldViewController.m */; };
 		EEA3816C14806046009948E5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3816B14806046009948E5 /* SenTestingKit.framework */; };
 		EEA3816D14806046009948E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA3814D14806046009948E5 /* UIKit.framework */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE576B0615325EA200050AC7 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		EEA3814914806046009948E5 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA3814D14806046009948E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EEA3814F14806046009948E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,7 +46,7 @@
 		EEA3815B14806046009948E5 /* Calculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calculator-Prefix.pch"; sourceTree = "<group>"; };
 		EEA3815C14806046009948E5 /* HelloWorldAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldAppDelegate.h; sourceTree = "<group>"; };
 		EEA3815D14806046009948E5 /* HelloWorldAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldAppDelegate.m; sourceTree = "<group>"; };
-		EEA3816014806046009948E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		EEA3816014806046009948E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		EEA3816214806046009948E5 /* HelloWorldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldViewController.h; sourceTree = "<group>"; };
 		EEA3816314806046009948E5 /* HelloWorldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldViewController.m; sourceTree = "<group>"; };
 		EEA3816A14806046009948E5 /* CalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +118,8 @@
 			children = (
 				EEA3815C14806046009948E5 /* HelloWorldAppDelegate.h */,
 				EEA3815D14806046009948E5 /* HelloWorldAppDelegate.m */,
-				EEA3815F14806046009948E5 /* MainStoryboard.storyboard */,
+				EEA3815F14806046009948E5 /* iPhone.storyboard */,
+				EE576B0615325EA200050AC7 /* iPad.storyboard */,
 				EEA3816214806046009948E5 /* HelloWorldViewController.h */,
 				EEA3816314806046009948E5 /* HelloWorldViewController.m */,
 				EEA3818214806392009948E5 /* CalculatorBrain.h */,
@@ -227,7 +230,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEA3815814806046009948E5 /* InfoPlist.strings in Resources */,
-				EEA3816114806046009948E5 /* MainStoryboard.storyboard in Resources */,
+				EEA3816114806046009948E5 /* iPhone.storyboard in Resources */,
+				EE576B0715325EA200050AC7 /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +300,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		EEA3815F14806046009948E5 /* MainStoryboard.storyboard */ = {
+		EEA3815F14806046009948E5 /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EEA3816014806046009948E5 /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		EEA3817414806046009948E5 /* InfoPlist.strings */ = {
@@ -366,7 +370,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -377,7 +383,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
