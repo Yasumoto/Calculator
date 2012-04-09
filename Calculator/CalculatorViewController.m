@@ -81,6 +81,10 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Graphing"]) {
         [segue.destinationViewController setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
+        //TODO(josephsmith) 04/08/2012: There's gotta be a better way to do this, object casting +
+        // setting the "controllers" datasource, then the view's datasource is wrong. Maybe the
+        // graphingViewController should be the datasource...? But it shouldn't deal with the CalculatorBrain,
+        // perhaps.
         GraphingViewController *controller = (GraphingViewController *) segue.destinationViewController;
         controller.dataSource = self;
     }
