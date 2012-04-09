@@ -57,6 +57,8 @@
 
     [[UIColor redColor] setStroke];
     CGContextBeginPath(context);
+    //TODO(josephsmith) 04/08/2012: How do we calculate the X values to display?
+    // Need to re-lookup a views bounds, and how we can convert that to what we display based on the scale.
     CGFloat startX = self.bounds.origin.x;
     CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
     for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
