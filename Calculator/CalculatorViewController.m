@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphingViewController.h"
 
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
@@ -26,7 +27,7 @@
 
 - (NSDictionary *)testVariableValues {
     if (!_testVariableValues) {
-        _testVariableValues = [[NSDictionary alloc] initWithObjectsAndKeys:@"x", @"0", nil];
+        _testVariableValues = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"x", @"0", nil];
     }
     return _testVariableValues;
 }
@@ -80,6 +81,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Graphing"]) {
         [segue.destinationViewController setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
+        GraphingViewController *controller = (GraphingViewController *) segue.destinationViewController;
+        controller.dataSource = self;
     }
 }
 

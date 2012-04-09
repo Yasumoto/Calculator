@@ -11,4 +11,5 @@
 
 @interface GraphingViewController : UIViewController
 @property (nonatomic, weak) IBOutlet GraphingView *graphingView;
+@property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
 @end

@@ -17,10 +17,9 @@
 @interface GraphingView : UIView
 
 @property (nonatomic) CGFloat scale;
+@property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
 
 //-(void) pinch:(UIPinchGestureRecognizer *) gesture;
 //-(void) pan:(UIPanGestureRecognizer *) gesture;
-
-@property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
 
 @end

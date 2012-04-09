@@ -15,10 +15,11 @@
 @implementation GraphingViewController
 
 @synthesize graphingView = _graphingView;
+@synthesize dataSource = _dataSource;
 
 - (void) setGraphingView:(GraphingView *)graphingView {
     _graphingView = graphingView;
-    //self.graphingView.dataSource = 
+    self.graphingView.dataSource = self.dataSource;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
