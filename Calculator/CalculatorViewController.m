@@ -66,7 +66,7 @@
         self.enteredLabel.text = @"";
         self.brain = nil;
         self.infixLabel.text = @"";
-        self.displayLabel.text = @"0";
+        self.displayLabel.text = @"";
     }
     else {
         if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];

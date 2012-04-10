@@ -27,6 +27,13 @@
     return _scale;
 }
 
+-(void) setScale:(CGFloat)scale {
+    if (scale != _scale) {
+        _scale = scale;
+        [self setNeedsDisplay];
+    }
+}
+
 - (void) setup
 {
     self.contentMode = UIViewContentModeRedraw;
@@ -35,6 +42,18 @@
 - (void) awakeFromNib
 {
     [self setup];
+}
+
+-(void)pinch:(UIPinchGestureRecognizer *)gesture {
+    if((gesture.state == UIGestureRecognizerStateChanged) ||
+       (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.scale *= gesture.scale;
+        gesture.scale = 1;
+    }
+}
+
+-(void)pan:(UIPanGestureRecognizer *)gesture {
+    
 }
 
 - (id)initWithFrame:(CGRect)frame

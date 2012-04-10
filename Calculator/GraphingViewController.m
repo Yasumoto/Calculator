@@ -20,6 +20,7 @@
 - (void) setGraphingView:(GraphingView *)graphingView {
     _graphingView = graphingView;
     self.graphingView.dataSource = self.dataSource;
+    [self.graphingView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphingView action:@selector(pinch:)]];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
