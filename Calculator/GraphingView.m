@@ -28,6 +28,14 @@
     return _scale;
 }
 
+-(void) setCenter:(CGPoint)center {
+    if ((center.x != _center.x) ||
+        (center.y != _center.y)) {
+        _center = center;
+        [self setNeedsDisplay];
+    }
+}
+
 -(void) setScale:(CGFloat)scale {
     if (scale != _scale) {
         _scale = scale;
@@ -38,6 +46,8 @@
 - (void) setup
 {
     self.contentMode = UIViewContentModeRedraw;
+    self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
+                          self.bounds.origin.y + self.bounds.size.height / 2);
 }
 
 - (void) awakeFromNib
@@ -56,7 +66,10 @@
 -(void)pan:(UIPanGestureRecognizer *)gesture {
     if((gesture.state == UIGestureRecognizerStateChanged) ||
        (gesture.state == UIGestureRecognizerStateEnded)) {
-        //self.
+        CGPoint currentCenter = self.center;
+        CGPoint translation = [gesture translationInView:self];
+        self.center = CGPointMake(currentCenter.x + translation.x, currentCenter.y + translation.y);
+        [gesture setTranslation:CGPointZero inView:self];
     }
 }
 
@@ -73,8 +86,6 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
-                              self.bounds.origin.y + self.bounds.size.height / 2);
     [AxesDrawer drawAxesInRect:self.bounds originAtPoint:self.center scale:self.scale];
 
     [[UIColor redColor] setStroke];
