@@ -90,11 +90,10 @@
 
     [[UIColor redColor] setStroke];
     CGContextBeginPath(context);
-    CGFloat startX = self.bounds.origin.x;
+    CGFloat startX = self.bounds.origin.x - self.center.x;
     CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
     for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
-        CGPoint currentCenter = self.center;
-        CGFloat plotPoint = (x - currentCenter.x)/self.scale;
+        CGFloat plotPoint = (x - self.center.x)/self.scale;
         CGFloat y = [self.dataSource PointYToPlotForXValue:plotPoint forGraphingView:self];
         CGContextAddLineToPoint(context, x, self.center.y + self.scale * y);
     }
