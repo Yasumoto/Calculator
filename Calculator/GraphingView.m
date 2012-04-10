@@ -3,7 +3,7 @@
 //  Calculator
 //
 //  Created by Joe Smith on 4/8/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 bjoli.com. All rights reserved.
 //
 
 #import "GraphingView.h"
@@ -70,6 +70,13 @@
         CGPoint translation = [gesture translationInView:self];
         self.center = CGPointMake(currentCenter.x + translation.x, currentCenter.y + translation.y);
         [gesture setTranslation:CGPointZero inView:self];
+    }
+}
+
+-(void)tap:(UITapGestureRecognizer *)gesture {
+    if((gesture.state == UIGestureRecognizerStateChanged) ||
+       (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.center = [gesture locationInView:self];
     }
 }
 
