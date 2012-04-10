@@ -17,6 +17,7 @@
 
 @synthesize scale = _scale;
 @synthesize dataSource = _dataSource;
+@synthesize center = _center;
 
 #define DEFAULT_SCALE 20
 
@@ -53,7 +54,10 @@
 }
 
 -(void)pan:(UIPanGestureRecognizer *)gesture {
-    
+    if((gesture.state == UIGestureRecognizerStateChanged) ||
+       (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -69,9 +73,8 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGPoint center;
-    center.x = self.bounds.origin.x + self.bounds.size.width / 2;
-    center.y = self.bounds.origin.y + self.bounds.size.height / 2;
+    self.center.x = self.bounds.origin.x + self.bounds.size.width / 2;
+    self.center.y = self.bounds.origin.y + self.bounds.size.height / 2;
     [AxesDrawer drawAxesInRect:self.bounds originAtPoint:center scale:self.scale];
 
     [[UIColor redColor] setStroke];

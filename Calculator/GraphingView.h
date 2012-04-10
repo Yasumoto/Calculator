@@ -18,6 +18,7 @@
 
 @property (nonatomic) CGFloat scale;
 @property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
+@property (nonatomic) CGPoint center;
 
 -(void) pinch:(UIPinchGestureRecognizer *) gesture;
 -(void) pan:(UIPanGestureRecognizer *) gesture;

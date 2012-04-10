@@ -21,6 +21,7 @@
     _graphingView = graphingView;
     self.graphingView.dataSource = self.dataSource;
     [self.graphingView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphingView action:@selector(pinch:)]];
+    [self.graphingView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphingView action:@selector(pan:)]];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
