@@ -56,7 +56,7 @@
 -(void)pan:(UIPanGestureRecognizer *)gesture {
     if((gesture.state == UIGestureRecognizerStateChanged) ||
        (gesture.state == UIGestureRecognizerStateEnded)) {
-        self.
+        //self.
     }
 }
 
@@ -73,9 +73,9 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    self.center.x = self.bounds.origin.x + self.bounds.size.width / 2;
-    self.center.y = self.bounds.origin.y + self.bounds.size.height / 2;
-    [AxesDrawer drawAxesInRect:self.bounds originAtPoint:center scale:self.scale];
+    self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
+                              self.bounds.origin.y + self.bounds.size.height / 2);
+    [AxesDrawer drawAxesInRect:self.bounds originAtPoint:self.center scale:self.scale];
 
     [[UIColor redColor] setStroke];
     CGContextBeginPath(context);
@@ -84,7 +84,7 @@
     for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
         CGFloat plotPoint = (x - self.bounds.origin.x + (self.bounds.size.width / 2))/self.scale;
         CGFloat y = [self.dataSource PointYToPlotForXValue:plotPoint forGraphingView:self];
-        CGContextAddLineToPoint(context, x, center.y + self.scale * y);
+        CGContextAddLineToPoint(context, x, self.center.y + self.scale * y);
     }
     CGContextStrokePath(context);
 }
