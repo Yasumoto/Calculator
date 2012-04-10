@@ -93,7 +93,8 @@
     CGFloat startX = self.bounds.origin.x;
     CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
     for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
-        CGFloat plotPoint = (x - self.bounds.origin.x + (self.bounds.size.width / 2))/self.scale;
+        CGPoint currentCenter = self.center;
+        CGFloat plotPoint = (x - currentCenter.x)/self.scale;
         CGFloat y = [self.dataSource PointYToPlotForXValue:plotPoint forGraphingView:self];
         CGContextAddLineToPoint(context, x, self.center.y + self.scale * y);
     }
