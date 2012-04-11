@@ -14,6 +14,7 @@
 - (IBAction)operationPressed:(UIButton *)sender;
 - (IBAction)enterPressed;
 - (IBAction)undoPressed:(UIButton *)sender;
+- (IBAction)graphProgram:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enteredLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infixLabel;

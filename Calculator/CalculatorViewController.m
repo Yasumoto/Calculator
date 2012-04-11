@@ -91,6 +91,13 @@
     }
 }
 
+- (IBAction)graphProgram:(UIButton *)sender {
+    id detailVC = [[self splitViewController].viewControllers lastObject];
+    if ([detailVC isKindOfClass:[GraphingViewController class]]) {
+        
+    }
+}
+
 - (IBAction)enterPressed {
     if ([self.displayLabel.text isEqualToString:@"x"] || [self.displayLabel.text isEqualToString:@"π"]) {
         [self.brain pushOperand:self.displayLabel.text];
