@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M90-Gu-0dw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M90-Gu-0dw">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -11,15 +11,33 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4dt-sU-1DE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qy8-5m-ENt" customClass="GraphingViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zIC-aJ-fZJ" customClass="GraphingView">
+                    <view key="view" contentMode="scaleToFill" id="zIC-aJ-fZJ">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="vRw-h7-j4w">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <view contentMode="scaleToFill" id="Gs6-aN-IG0" customClass="GraphingView">
+                                <rect key="frame" x="0.0" y="44" width="768" height="960"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="toolbar" destination="vRw-h7-j4w" id="yrK-ug-kgX"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="view" destination="Gs6-aN-IG0" id="FBv-yL-N0s"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="486" y="218"/>
+            <point key="canvasLocation" x="484" y="244"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="amX-r7-m34">
@@ -378,6 +396,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingView.h"/>
             <relationships>
                 <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="GraphingViewController" superclassName="UIViewController">

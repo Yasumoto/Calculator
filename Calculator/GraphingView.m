@@ -11,6 +11,7 @@
 
 @interface GraphingView()
 - (void) setup;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @end
 
 @implementation GraphingView
@@ -18,6 +19,8 @@
 @synthesize scale = _scale;
 @synthesize dataSource = _dataSource;
 @synthesize center = _center;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize toolbar = _toolbar;
 
 #define DEFAULT_SCALE 20
 
@@ -26,6 +29,20 @@
         return DEFAULT_SCALE;
     }
     return _scale;
+}
+
+- (void) handleSplitViewBarButtonItem:(UIBarButtonItem *) splitViewBarButtonItem {
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    if(_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+    if(splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
+
+- (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem {
+    if (splitViewBarButtonItem != _splitViewBarButtonItem) {
+        [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
 }
 
 -(void) setCenter:(CGPoint)center {
@@ -48,6 +65,7 @@
     self.contentMode = UIViewContentModeRedraw;
     self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
                           self.bounds.origin.y + self.bounds.size.height / 2);
+    [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
 }
 
 - (void) awakeFromNib
