@@ -15,7 +15,7 @@
 - (float) PointYToPlotForXValue:(float) x forGraphingView:(GraphingView *)sender;
 @end
 
-@interface GraphingView : UIView <SplitViewBarButtonItemPresenter>
+@interface GraphingView : UIView
 
 @property (nonatomic) CGFloat scale;
 @property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;

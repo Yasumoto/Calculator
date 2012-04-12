@@ -149,6 +149,7 @@
 
 - (void)awakeFromNib { // always try to be the split view's delegate
     [super awakeFromNib];
+    self.title = @"Calculator";
     self.splitViewController.delegate = self;
 }
 

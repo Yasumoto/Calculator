@@ -24,9 +24,6 @@
                                 <rect key="frame" x="0.0" y="44" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="toolbar" destination="vRw-h7-j4w" id="yrK-ug-kgX"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -34,7 +31,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="graphingView" destination="Gs6-aN-IG0" id="Ce9-AO-KiH"/>
-                        <outlet property="view" destination="Gs6-aN-IG0" id="FBv-yL-N0s"/>
+                        <outlet property="toolbar" destination="vRw-h7-j4w" id="dn3-Xs-vzh"/>
                     </connections>
                 </viewController>
             </objects>
@@ -475,7 +472,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingView.h"/>
             <relationships>
                 <relationship kind="outlet" name="dataSource"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="GraphingViewController" superclassName="UIViewController">
@@ -483,6 +479,7 @@
             <relationships>
                 <relationship kind="outlet" name="dataSource"/>
                 <relationship kind="outlet" name="graphingView" candidateClass="GraphingView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
     </classes>

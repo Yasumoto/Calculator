@@ -9,13 +9,15 @@
 #import "GraphingViewController.h"
 
 @interface GraphingViewController ()
-
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 @end
 
 @implementation GraphingViewController
 
 @synthesize graphingView = _graphingView;
 @synthesize dataSource = _dataSource;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize toolbar = _toolbar;
 
 - (void) setGraphingView:(GraphingView *)graphingView {
     _graphingView = graphingView;
@@ -31,9 +33,23 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
     }
     return self;
+}
+
+- (void) handleSplitViewBarButtonItem:(UIBarButtonItem *) splitViewBarButtonItem {
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    if(_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+    if(splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
+
+- (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem {
+    if (splitViewBarButtonItem != _splitViewBarButtonItem) {
+        [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
 }
 
 - (void)viewDidLoad

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GraphingView.h"
 
-@interface GraphingViewController : UIViewController
+@interface GraphingViewController : UIViewController <SplitViewBarButtonItemPresenter>
 @property (nonatomic, weak) IBOutlet GraphingView *graphingView;
 @property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
 @end
