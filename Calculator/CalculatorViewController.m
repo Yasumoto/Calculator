@@ -94,7 +94,9 @@
 - (IBAction)graphProgram:(UIButton *)sender {
     id detailVC = [[self splitViewController].viewControllers lastObject];
     if ([detailVC isKindOfClass:[GraphingViewController class]]) {
-        
+        GraphingViewController *controller = (GraphingViewController *) detailVC;
+        controller.dataSource = self;
+        [controller.graphingView setNeedsDisplay];
     }
 }
 

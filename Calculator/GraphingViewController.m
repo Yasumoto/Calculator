@@ -29,6 +29,11 @@
     [self.graphingView addGestureRecognizer:tapGesture];
 }
 
+- (void) setDataSource:(id<GraphingViewDataSource>)dataSource {
+    _dataSource = dataSource;
+    self.graphingView.dataSource = self.dataSource;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
