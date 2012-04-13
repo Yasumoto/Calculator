@@ -33,6 +33,9 @@
         (center.y != _center.y)) {
         _center = center;
         [self setNeedsDisplay];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setFloat:center.x forKey:@"centerX"];
+        [userDefaults setFloat:center.y forKey:@"centerY"];
     }
 }
 
@@ -40,12 +43,16 @@
     if (scale != _scale) {
         _scale = scale;
         [self setNeedsDisplay];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setFloat:self.scale forKey:@"scale"];
     }
 }
 
 - (void) setup
 {
     self.contentMode = UIViewContentModeRedraw;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.center = CGPointMake([userDefaults valueForKey:@"centerX"
     self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
                           self.bounds.origin.y + self.bounds.size.height / 2);
 }
