@@ -90,8 +90,6 @@
         GraphingViewController *controller = (GraphingViewController *) segue.destinationViewController;
         controller.dataSource = self;
         controller.drawingLine = self.lineSwitch.isOn;
-        NSLog(@"lineSwitch.isOn: %@", self.lineSwitch.isOn ? @"YES" : @"NO");
-        NSLog(@"controller.drawingLine: %@", controller.drawingLine ? @"YES" : @"NO");
     }
 }
 

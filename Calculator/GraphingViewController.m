@@ -37,6 +37,9 @@
 
 - (void) setDrawingLine:(BOOL)drawingLine {
     _drawingLine = drawingLine;
+    // This will take effect in the iPad, since the view is already created.
+    // However, the iPhone storyboard uses a segue transition, which creates a new view each time,
+    // and I don't believe it is instantiated yet
     self.graphingView.drawingLine = self.drawingLine;
 }
 
@@ -61,6 +64,11 @@
     if (splitViewBarButtonItem != _splitViewBarButtonItem) {
         [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
     }
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    // For the view on an iPhone (which in this case is using a segue)
+    self.graphingView.drawingLine = self.drawingLine;
 }
 
 - (void)viewDidLoad
