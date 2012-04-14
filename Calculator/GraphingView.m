@@ -106,21 +106,19 @@
     return self;
 }
 
-- (void)drawGraphWithLines {
+- (void)drawGraphWithDots {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor redColor] setStroke];
+    [[UIColor redColor] setFill];
     CGContextBeginPath(context);
-    CGFloat startX = self.bounds.origin.x - self.center.x;
-    CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
-    for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
+    for (CGFloat x = self.bounds.origin.x; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
         CGFloat plotPoint = (x - self.center.x)/self.scale;
         CGFloat y = [self.dataSource PointYToPlotForXValue:plotPoint forGraphingView:self];
-        CGContextAddLineToPoint(context, x, self.center.y - self.scale * y);
+        CGContextFillRect(context, CGRectMake(x, self.center.y - self.scale * y, 1, 1));
     }
     CGContextStrokePath(context);
 }
 
-- (void)drawGraphWithDots {
+- (void)drawGraphWithLines {
     CGContextRef context = UIGraphicsGetCurrentContext();
     [[UIColor blueColor] setStroke];
     CGContextBeginPath(context);
