@@ -18,6 +18,7 @@
 @synthesize scale = _scale;
 @synthesize dataSource = _dataSource;
 @synthesize center = _center;
+@synthesize drawingLine = _drawingLine;
 
 #define DEFAULT_SCALE 20
 
@@ -53,7 +54,6 @@
 {
     self.contentMode = UIViewContentModeRedraw;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"centerX: %f", [userDefaults floatForKey:@"centerX"]);
     if ([userDefaults floatForKey:@"centerX"]) {
         self.center = CGPointMake([userDefaults floatForKey:@"centerX"],
                                   [userDefaults floatForKey:@"centerY"]);
@@ -106,12 +106,8 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawGraphWithLines {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    [AxesDrawer drawAxesInRect:self.bounds originAtPoint:self.center scale:self.scale];
-
     [[UIColor redColor] setStroke];
     CGContextBeginPath(context);
     CGFloat startX = self.bounds.origin.x - self.center.x;
@@ -122,6 +118,33 @@
         CGContextAddLineToPoint(context, x, self.center.y - self.scale * y);
     }
     CGContextStrokePath(context);
+}
+
+- (void)drawGraphWithDots {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [[UIColor blueColor] setStroke];
+    CGContextBeginPath(context);
+    CGFloat startX = self.bounds.origin.x - self.center.x;
+    CGContextMoveToPoint(context, startX, [self.dataSource PointYToPlotForXValue:startX forGraphingView:self]);
+    for (CGFloat x = self.bounds.origin.x+1.0; x < self.bounds.origin.x + self.bounds.size.width; x += 1.0) {
+        CGFloat plotPoint = (x - self.center.x)/self.scale;
+        CGFloat y = [self.dataSource PointYToPlotForXValue:plotPoint forGraphingView:self];
+        CGContextAddLineToPoint(context, x, self.center.y - self.scale * y);
+    }
+    CGContextStrokePath(context);
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    
+    [AxesDrawer drawAxesInRect:self.bounds originAtPoint:self.center scale:self.scale];
+    if (self.drawingLine) {
+        [self drawGraphWithLines];
+    }
+    else {
+        [self drawGraphWithDots];
+    }
+
 }
 
 @end

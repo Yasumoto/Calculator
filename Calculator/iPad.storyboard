@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M90-Gu-0dw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M90-Gu-0dw">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -441,6 +441,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="80B-El-MyC">
+                                <rect key="frame" x="121" y="785" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -448,6 +452,7 @@
                         <outlet property="displayLabel" destination="shd-KO-61h" id="5qU-RJ-Z2T"/>
                         <outlet property="enteredLabel" destination="t7E-vf-8ci" id="OXa-kz-giJ"/>
                         <outlet property="infixLabel" destination="GIT-dC-mP2" id="BZO-29-RyS"/>
+                        <outlet property="lineSwitch" destination="80B-El-MyC" id="Z71-JM-1ep"/>
                     </connections>
                 </viewController>
             </objects>
@@ -466,6 +471,7 @@
                 <relationship kind="outlet" name="displayLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enteredLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infixLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lineSwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="GraphingView" superclassName="UIView">

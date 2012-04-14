@@ -17,5 +17,6 @@
 - (IBAction)graphProgram:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enteredLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *lineSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *infixLabel;
 @end

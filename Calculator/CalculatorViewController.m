@@ -19,6 +19,7 @@
 
 @implementation CalculatorViewController
 @synthesize enteredLabel = _enteredLabel;
+@synthesize lineSwitch = _lineSwitch;
 @synthesize infixLabel = _infixLabel;
 
 @synthesize displayLabel = _displayLabel;
@@ -88,6 +89,7 @@
         // perhaps.
         GraphingViewController *controller = (GraphingViewController *) segue.destinationViewController;
         controller.dataSource = self;
+        controller.drawingLine = self.lineSwitch.isOn;
     }
 }
 
@@ -96,6 +98,7 @@
     if ([detailVC isKindOfClass:[GraphingViewController class]]) {
         GraphingViewController *controller = (GraphingViewController *) detailVC;
         controller.dataSource = self;
+        controller.drawingLine = self.lineSwitch.isOn;
         [controller.graphingView setNeedsDisplay];
     }
 }
@@ -189,6 +192,8 @@
 
 - (void)viewDidUnload {
     [self setEnteredLabel:nil];
+    [self setLineSwitch:nil];
+    [self setLineSwitch:nil];
     [super viewDidUnload];
 }
 @end

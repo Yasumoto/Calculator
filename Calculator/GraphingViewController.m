@@ -18,6 +18,7 @@
 @synthesize dataSource = _dataSource;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
+@synthesize drawingLine = _drawingLine;
 
 - (void) setGraphingView:(GraphingView *)graphingView {
     _graphingView = graphingView;
@@ -32,6 +33,11 @@
 - (void) setDataSource:(id<GraphingViewDataSource>)dataSource {
     _dataSource = dataSource;
     self.graphingView.dataSource = self.dataSource;
+}
+
+- (void) setDrawingLine:(BOOL)drawingLine {
+    _drawingLine = drawingLine;
+    self.graphingView.drawingLine = self.drawingLine;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

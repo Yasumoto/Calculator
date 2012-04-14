@@ -12,4 +12,5 @@
 @interface GraphingViewController : UIViewController <SplitViewBarButtonItemPresenter>
 @property (nonatomic, weak) IBOutlet GraphingView *graphingView;
 @property (nonatomic, weak) IBOutlet id <GraphingViewDataSource> dataSource;
+@property (nonatomic) BOOL drawingLine;
 @end
