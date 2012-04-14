@@ -31,11 +31,12 @@
 -(void) setCenter:(CGPoint)center {
     if ((center.x != _center.x) ||
         (center.y != _center.y)) {
-        _center = center;
-        [self setNeedsDisplay];
+        _center.x = center.x;
+        _center.y = center.y;
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setFloat:center.x forKey:@"centerX"];
         [userDefaults setFloat:center.y forKey:@"centerY"];
+        [self setNeedsDisplay];
     }
 }
 
@@ -52,9 +53,18 @@
 {
     self.contentMode = UIViewContentModeRedraw;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.center = CGPointMake([userDefaults valueForKey:@"centerX"
-    self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
-                          self.bounds.origin.y + self.bounds.size.height / 2);
+    NSLog(@"centerX: %f", [userDefaults floatForKey:@"centerX"]);
+    if ([userDefaults floatForKey:@"centerX"]) {
+        self.center = CGPointMake([userDefaults floatForKey:@"centerX"],
+                                  [userDefaults floatForKey:@"centerY"]);
+    }
+    else {
+        self.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2,
+                                  self.bounds.origin.y + self.bounds.size.height / 2);
+    }
+    if ([userDefaults floatForKey:@"scale"]) {
+        self.scale = [userDefaults floatForKey:@"scale"];
+    }
 }
 
 - (void) awakeFromNib
