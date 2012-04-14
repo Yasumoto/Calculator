@@ -423,7 +423,7 @@
                         <outlet property="displayLabel" destination="PbE-gF-VER" id="gxN-Qg-cQt"/>
                         <outlet property="enteredLabel" destination="FjV-gE-CQs" id="zZs-Q3-dCc"/>
                         <outlet property="infixLabel" destination="Qye-Mb-pk7" id="3TH-i5-2Fy"/>
-                        <outlet property="lineSwitch" destination="YIu-B2-Bzj" id="g7T-D2-2qe"/>
+                        <outlet property="lineSwitch" destination="YIu-B2-Bzj" id="YKH-gz-37Q"/>
                     </connections>
                 </viewController>
             </objects>
